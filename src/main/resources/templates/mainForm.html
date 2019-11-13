@@ -15,6 +15,14 @@
             <td><a th:href="@{/readDb}" th:text="#{msg.ReadDB}"/></td>
             <td><input type="number" th:readonly="true" th:field="*{readTime}" />[sek]</td>
         </tr>
+        <tr>
+            <td><a th:href="@{/saveMongoDb}" th:text="#{msg.SaveMongoDb}"/></td>
+            <td><input type="number" th:readonly="true" th:field="*{saveTimeMongoDb}" />[sek]</td>
+        </tr>
+        <tr>
+            <td><a th:href="@{/readMongoDb}" th:text="#{msg.ReadMongoDB}"/></td>
+            <td><input type="number" th:readonly="true" th:field="*{readTimeMongoDb}" />[sek]</td>
+        </tr>
     </table>
 </form>
 </body>

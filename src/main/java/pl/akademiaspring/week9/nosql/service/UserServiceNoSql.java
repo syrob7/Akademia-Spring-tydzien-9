@@ -1,28 +1,27 @@
-package pl.akademiaspring.week9.sql.service;
+package pl.akademiaspring.week9.nosql.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.akademiaspring.week9.App;
 import pl.akademiaspring.week9.aspects.AccessDb;
-import pl.akademiaspring.week9.sql.repository.UserRepository;
-
+import pl.akademiaspring.week9.nosql.repository.UserRepositoryNoSql;
 
 @Service
-public class UserService {
+public class UserServiceNoSql {
 
-    private UserRepository userRepository;
+    private UserRepositoryNoSql userRepository;
     private App app;
 
     @Autowired
-    public UserService(App app, UserRepository userRepository) {
+    public UserServiceNoSql(App app, UserRepositoryNoSql userRepository) {
         this.app = app;
         this.userRepository = userRepository;
     }
 
     @AccessDb
     public void saveDataIntoDb() {
-        if (app.getUsersList() == null) return;
-        userRepository.saveAll(app.getUsersList());
+        if (app.getUsersNoSqlList() == null) return;
+        userRepository.saveAll(app.getUsersNoSqlList());
     }
 
     @AccessDb

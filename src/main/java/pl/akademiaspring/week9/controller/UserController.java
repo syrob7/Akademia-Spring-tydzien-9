@@ -1,22 +1,25 @@
-package pl.akademiaspring.week9.sql.controller;
+package pl.akademiaspring.week9.controller;
 
 import org.springframework.ui.Model;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import pl.akademiaspring.week9.aspects.AspectDb;
+import pl.akademiaspring.week9.nosql.service.UserServiceNoSql;
 import pl.akademiaspring.week9.sql.service.UserService;
 
 @Controller
 public class UserController {
 
     private UserService userService;
+    private UserServiceNoSql userServiceNoSql;
     private AspectDb aspectDb;
     private FormObject formObject;
 
     @Autowired
-    public UserController(UserService userService, AspectDb aspectDb) {
+    public UserController(UserService userService, UserServiceNoSql userServiceNoSql, AspectDb aspectDb) {
         this.userService = userService;
+        this.userServiceNoSql = userServiceNoSql;
         this.aspectDb = aspectDb;
         this.formObject = new FormObject();
     }
@@ -45,6 +48,28 @@ public class UserController {
 
         userService.readDataFromDb();
         formObject.setReadTime(aspectDb.getElapsedTime() / 1000);
+
+        model.addAttribute("aspectTime", formObject);
+
+        return "mainForm";
+    }
+
+    @GetMapping("/saveMongoDb")
+    public String saveToMongoDb(Model model) {
+
+        userServiceNoSql.saveDataIntoDb();
+        formObject.setSaveTimeMongoDb(aspectDb.getElapsedTime() / 1000);
+
+        model.addAttribute("aspectTime", formObject);
+
+        return "mainForm";
+    }
+
+    @GetMapping("/readMongoDb")
+    public String readFromMongoDb(Model model) {
+
+        userServiceNoSql.readDataFromDb();
+        formObject.setReadTimeMongoDb(aspectDb.getElapsedTime() / 1000);
 
         model.addAttribute("aspectTime", formObject);
 
