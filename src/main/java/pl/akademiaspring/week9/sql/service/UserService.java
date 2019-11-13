@@ -29,7 +29,7 @@ public class UserService {
     }
 
     @AccessDb
-    public List<User> readDataFromDb() {
-        return userRepository.findAll();
+    public void readDataFromDb() {
+        List<User> all = userRepository.findAll();
     }
 }

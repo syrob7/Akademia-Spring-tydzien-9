@@ -28,7 +28,7 @@ public class UserServiceNoSql {
     }
 
     @AccessDb
-    public List<UserNoSql> readDataFromDb() {
-         return userRepository.findAll();
+    public void readDataFromDb() {
+        List<UserNoSql> all = userRepository.findAll();
     }
 }

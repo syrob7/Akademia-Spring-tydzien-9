@@ -50,7 +50,7 @@ public class UserController {
     @GetMapping("/readDb")
     public String readFromDb(Model model) {
 
-        List<User> users = userService.readDataFromDb();
+        userService.readDataFromDb();
         formObject.setReadTime(aspectDb.getElapsedTime() / 1000);
 
         model.addAttribute("aspectTime", formObject);
@@ -72,7 +72,7 @@ public class UserController {
     @GetMapping("/readMongoDb")
     public String readFromMongoDb(Model model) {
 
-        List<UserNoSql> userNoSqls = userServiceNoSql.readDataFromDb();
+        userServiceNoSql.readDataFromDb();
         formObject.setReadTimeMongoDb(aspectDb.getElapsedTime() / 1000);
 
         model.addAttribute("aspectTime", formObject);
