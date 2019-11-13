@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.akademiaspring.week9.App;
 import pl.akademiaspring.week9.aspects.AccessDb;
+import pl.akademiaspring.week9.nosql.model.UserNoSql;
 import pl.akademiaspring.week9.nosql.repository.UserRepositoryNoSql;
+
+import java.util.List;
 
 @Service
 public class UserServiceNoSql {
@@ -25,7 +28,7 @@ public class UserServiceNoSql {
     }
 
     @AccessDb
-    public void readDataFromDb() {
-        userRepository.findAll();
+    public List<UserNoSql> readDataFromDb() {
+         return userRepository.findAll();
     }
 }

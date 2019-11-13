@@ -4,7 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.akademiaspring.week9.App;
 import pl.akademiaspring.week9.aspects.AccessDb;
+import pl.akademiaspring.week9.sql.model.User;
 import pl.akademiaspring.week9.sql.repository.UserRepository;
+
+import java.util.List;
 
 
 @Service
@@ -26,7 +29,7 @@ public class UserService {
     }
 
     @AccessDb
-    public void readDataFromDb() {
-        userRepository.findAll();
+    public List<User> readDataFromDb() {
+        return userRepository.findAll();
     }
 }
