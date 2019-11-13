@@ -5,8 +5,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import pl.akademiaspring.week9.aspects.AspectDb;
+import pl.akademiaspring.week9.nosql.model.UserNoSql;
 import pl.akademiaspring.week9.nosql.service.UserServiceNoSql;
+import pl.akademiaspring.week9.sql.model.User;
 import pl.akademiaspring.week9.sql.service.UserService;
+
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -46,7 +50,7 @@ public class UserController {
     @GetMapping("/readDb")
     public String readFromDb(Model model) {
 
-        userService.readDataFromDb();
+        List<User> users = userService.readDataFromDb();
         formObject.setReadTime(aspectDb.getElapsedTime() / 1000);
 
         model.addAttribute("aspectTime", formObject);
@@ -68,7 +72,7 @@ public class UserController {
     @GetMapping("/readMongoDb")
     public String readFromMongoDb(Model model) {
 
-        userServiceNoSql.readDataFromDb();
+        List<UserNoSql> userNoSqls = userServiceNoSql.readDataFromDb();
         formObject.setReadTimeMongoDb(aspectDb.getElapsedTime() / 1000);
 
         model.addAttribute("aspectTime", formObject);
