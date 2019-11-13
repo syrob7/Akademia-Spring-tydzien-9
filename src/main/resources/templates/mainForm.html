@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" href="/style.css" />
+    <title>Db</title>
+</head>
+<body>
+<form th:object="${aspectTime}" method="get">
+    <table align="center" border="0" cellpadding="4" cellspacing="1">
+        <tr>
+            <td><a th:href="@{/saveDb}" th:text="#{msg.SaveDb}"/></td>
+            <td><input type="number" th:readonly="true" th:field="*{saveTime}" />[sek]</td>
+        </tr>
+        <tr>
+            <td><a th:href="@{/readDb}" th:text="#{msg.ReadDB}"/></td>
+            <td><input type="number" th:readonly="true" th:field="*{readTime}" />[sek]</td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
